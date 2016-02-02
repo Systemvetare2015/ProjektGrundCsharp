@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Tetris.Game;
+using Tetris.Game.FaloingTypes;
 
 namespace Tetris
 {
