@@ -1,6 +1,0 @@
-C:\Dev\skola\Tetris\Tetris\Tetris\bin\Debug\Tetris.exe.config
-C:\Dev\skola\Tetris\Tetris\Tetris\bin\Debug\Tetris.exe
-C:\Dev\skola\Tetris\Tetris\Tetris\bin\Debug\Tetris.pdb
-C:\Dev\skola\Tetris\Tetris\Tetris\obj\Debug\Tetris.csprojResolveAssemblyReference.cache
-C:\Dev\skola\Tetris\Tetris\Tetris\obj\Debug\Tetris.exe
-C:\Dev\skola\Tetris\Tetris\Tetris\obj\Debug\Tetris.pdb
