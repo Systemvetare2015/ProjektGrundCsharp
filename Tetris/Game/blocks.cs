@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace Tetris.Game
+namespace Tetris
 {
     public  class Block
     {

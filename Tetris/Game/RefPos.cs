@@ -1,4 +1,4 @@
-﻿namespace Tetris.Game
+﻿namespace Tetris
 {
     public class RefPos
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Tetris.Game.FaloingTypes
+namespace Tetris
 {
     public abstract class FallingType
     {

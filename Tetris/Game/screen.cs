@@ -14,7 +14,6 @@ namespace Tetris.Game
         private FallingType  MovingBlock{ get; set; }
         List<Block>  stillBlocks{ get; set; }
         private bool canMove = true;
-        private bool gameOver = false;
         public TetrisGame()
         {
             Console.Clear();
@@ -54,23 +53,24 @@ namespace Tetris.Game
                 case 3:
                     MovingBlock = new ReverseL();
                     break;
-                case 4:
-                    MovingBlock = new Cube();
-                    break;
             }
             first = true;
 
 
         }
-        private void Render(char output ,List<Block> blocks )
+        private void Render(char output)
         {
-            foreach (var block in blocks.Where(block => block.Y>0))
+            foreach (var block in MovingBlock.ToPostitions())
             {
-                Console.SetCursorPosition((block.X * 2), block.Y + gametopPosistion);
-                Console.ForegroundColor = block.Color;
-                Console.Out.WriteLine(output);
-                Console.ForegroundColor = ConsoleColor.White;
+                if (block.Y>0)
+                {
+                    Console.SetCursorPosition((block.X * 2), block.Y + gametopPosistion);
+                    Console.ForegroundColor = block.Color;
+                    Console.Out.WriteLine(output);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
             }
+            
         }
 
         public void Right()
@@ -81,13 +81,22 @@ namespace Tetris.Game
         {
             Move(-1,0);
         }
-      
+        private void RenderStillBlocks(char output = 'O')
+        {
+            foreach (var block in stillBlocks)
+            {
+                Console.SetCursorPosition((block.X * 2), block.Y + gametopPosistion);
+                Console.ForegroundColor = block.Color;
+                Console.Out.WriteLine(output);
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+        }
 
         private void Move(int x, int y)
         {
             if (!canMove) return;
             canMove = false;
-            var curretPos = MovingBlock.ToPostitions();
+            Render(' ');
             var bottom = MovingBlock.ToucingOnNextMove(x, y, stillBlocks);
             if (first && bottom)
             {
@@ -98,17 +107,19 @@ namespace Tetris.Game
             if (bottom)
             {
                 stillBlocks.AddRange(MovingBlock.ToPostitions());
-                addTemps();
-                ClearAndRender(new List<Block>(), stillBlocks, false);
-                CheckIfRowIsFull();
+                ClearAndRender(false, addTemps);
+                RenderStillBlocks();
+                ClearAndRender(true, CheckIfRowIsFull);
+                RenderStillBlocks();
                 return;
             }
-            ClearAndRender(curretPos,MovingBlock.ToPostitions());
+
+            Render('O');
+            canMove = true;
         }
 
         private void GameOver()
         {
-            gameOver = true;
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.Out.WriteLine("GameOver");
@@ -118,38 +129,40 @@ namespace Tetris.Game
 
         public void CheckIfRowIsFull()
         {
-            var toRemove= new List<Block>();
-            var moved = false;
-           
+            var Moved = false;
             do
             {
-                moved = false;
+                Moved = false;
 
                 for (int i = 20; i >= 0; i--)
                 {
                     var sameRow = stillBlocks.Where(block => block.Y == i).ToList();
                     if (sameRow.Count() > 10)
                     {
-                        score = score + 10;
+                       score = score + 10;
                         UpdateScore();
-                        sameRow.ForEach((block => stillBlocks.Remove(block)));
-                        toRemove.AddRange(sameRow);
+                        RenderStillBlocks(' ');
+                        sameRow.ForEach(r => stillBlocks.Remove(r));
+                        RenderStillBlocks();
 
                         for (int j = i ; j >= 0; j--)
                         {
                             var willMove = stillBlocks.Where(c => c.Y == j).ToList();
-                            willMove.ForEach((block => stillBlocks.Remove(block)));
+                            RenderStillBlocks(' ');
 
-                            toRemove.AddRange(willMove);
+                            willMove.ForEach(r => stillBlocks.Remove(r));
+                            RenderStillBlocks();
+
                             stillBlocks.AddRange(willMove.Select(p =>new Block(p.Color,p.X,p.Y+1)));
 
+
+
                         }
-                        moved = true;
+                        Moved = true;
                     }
                     
                 }
-            } while (moved);
-            ClearAndRender(toRemove,stillBlocks);
+            } while (Moved);
         }
 
         private void UpdateScore()
@@ -161,50 +174,52 @@ namespace Tetris.Game
 
         public void Rotate()
         {
-            var oldPos = MovingBlock.ToPostitions();
-            MovingBlock.Rotate();
-            ClearAndRender(oldPos,MovingBlock.ToPostitions());
+            ClearAndRender(true,MovingBlock.Rotate);
         }
 
         public void MoveDown()
         {
+            return;
             canMove = false;
-            var curentPos = MovingBlock.ToPostitions();
-            var touch = false;
-            while (!touch)
+            while (!MovingBlock.ToucingOnNextMove(MovingBlock.X,MovingBlock.Y,stillBlocks))
             {
-                touch = MovingBlock.ToucingOnNextMove(0, 1, stillBlocks);
-            } 
 
-            ClearAndRender(curentPos, stillBlocks);
-
-
+            }
+            stillBlocks.AddRange(MovingBlock.ToPostitions());
+            ClearAndRender(true, addTemps);
+            RenderStillBlocks();
+            canMove = true;
         }
 
        
 
-        private void ClearAndRender(List<Block> BlocksToRemove,List<Block>BlocksToRender, bool canMoveAfter = true)
+        private void ClearAndRender(bool CanMove = true,RunBetweenRender runBetweenRender = null,RunBetweenRender runBetweenRender2 = null)
         {
             canMove = false;
-            Render(' ', BlocksToRemove);
-            Render('O',BlocksToRender);
-            canMove = canMoveAfter;
+            Render(' ');
+            runBetweenRender?.Invoke();
+            runBetweenRender2?.Invoke();
+            Render('O');
+            canMove = CanMove;
 
         }
         public void Run()
         {
             addTemps();
+
+            Render('O');
             Thread.Sleep(1000);
-            while (!gameOver)
+
+            while (true)
             {
+                
                 Move(0,1);
-                var speed = 500;
-                if (score <300)
-                {
-                    speed = speed - score;
-                }
-                Thread.Sleep(speed);
+
+
+                Thread.Sleep(200);
             }
+                
+            
         }
         public delegate void RunBetweenRender();
 

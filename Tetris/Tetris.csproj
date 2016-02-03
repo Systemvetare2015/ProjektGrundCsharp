@@ -44,19 +44,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game\blocks.cs" />
-    <Compile Include="Game\FaloingTypes\Cube.cs" />
     <Compile Include="Game\FaloingTypes\FallingType.cs" />
     <Compile Include="Game\FaloingTypes\L.cs" />
     <Compile Include="Game\FaloingTypes\Long.cs" />
     <Compile Include="Game\FaloingTypes\ReverseL.cs" />
-    <Compile Include="MenuHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Game\RefPos.cs" />
     <Compile Include="Game\screen.cs" />
     <Compile Include="Game\FaloingTypes\Triangle.cs" />
     <Compile Include="Reflective.cs" />
-    <Compile Include="UserStat.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
