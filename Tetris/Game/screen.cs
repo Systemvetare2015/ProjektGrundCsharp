@@ -1,8 +1,8 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Tetris.Game.FaloingTypes;
+﻿using Tetris.Game.Fallingtype;
 
 namespace Tetris.Game
 {
@@ -11,8 +11,8 @@ namespace Tetris.Game
         private int gametopPosistion { get; set; }
         private bool first { get; set; }
         public int score { get; set; }
-        private FallingType  MovingBlock{ get; set; }
-        List<Block>  stillBlocks{ get; set; }
+        private FallingType MovingBlock { get; set; }
+        List<Block> stillBlocks { get; set; }
         private bool canMove = true;
         private bool gameOver = false;
         public TetrisGame()
@@ -21,13 +21,13 @@ namespace Tetris.Game
             score = 0;
             stillBlocks = new List<Block>();
             Console.Out.WriteLine("Tetris");
-            Console.Out.WriteLine($"Score : {score}");
-            
+            Console.Out.WriteLine("Score : {0}", score);
+
             Console.Out.WriteLine("X X X X X X X X X X X X X");
-            gametopPosistion = Console.CursorTop-1;
+            gametopPosistion = Console.CursorTop - 1;
             for (var i = 0; i < 20; i++)
             {
-                Console.Out.WriteLine("X                       X");  
+                Console.Out.WriteLine("X                       X");
             }
             Console.Out.WriteLine("X X X X X X X X X X X X X");
             first = true;
@@ -62,9 +62,9 @@ namespace Tetris.Game
 
 
         }
-        private void Render(char output ,List<Block> blocks )
+        private void Render(char output, List<Block> blocks)
         {
-            foreach (var block in blocks.Where(block => block.Y>0))
+            foreach (var block in blocks.Where(block => block.Y > 0))
             {
                 Console.SetCursorPosition((block.X * 2), block.Y + gametopPosistion);
                 Console.ForegroundColor = block.Color;
@@ -75,13 +75,13 @@ namespace Tetris.Game
 
         public void Right()
         {
-            Move(1,0);
+            Move(1, 0);
         }
         public void Left()
         {
-            Move(-1,0);
+            Move(-1, 0);
         }
-      
+
 
         private void Move(int x, int y)
         {
@@ -103,7 +103,7 @@ namespace Tetris.Game
                 CheckIfRowIsFull();
                 return;
             }
-            ClearAndRender(curretPos,MovingBlock.ToPostitions());
+            ClearAndRender(curretPos, MovingBlock.ToPostitions());
         }
 
         private void GameOver()
@@ -118,9 +118,9 @@ namespace Tetris.Game
 
         public void CheckIfRowIsFull()
         {
-            var toRemove= new List<Block>();
+            var toRemove = new List<Block>();
             var moved = false;
-           
+
             do
             {
                 moved = false;
@@ -135,27 +135,27 @@ namespace Tetris.Game
                         sameRow.ForEach((block => stillBlocks.Remove(block)));
                         toRemove.AddRange(sameRow);
 
-                        for (int j = i ; j >= 0; j--)
+                        for (int j = i; j >= 0; j--)
                         {
                             var willMove = stillBlocks.Where(c => c.Y == j).ToList();
                             willMove.ForEach((block => stillBlocks.Remove(block)));
 
                             toRemove.AddRange(willMove);
-                            stillBlocks.AddRange(willMove.Select(p =>new Block(p.Color,p.X,p.Y+1)));
+                            stillBlocks.AddRange(willMove.Select(p => new Block(p.Color, p.X, p.Y + 1)));
 
                         }
                         moved = true;
                     }
-                    
+
                 }
             } while (moved);
-            ClearAndRender(toRemove,stillBlocks);
+            ClearAndRender(toRemove, stillBlocks);
         }
 
         private void UpdateScore()
         {
-            Console.SetCursorPosition(0,1);
-            Console.Out.WriteLine($"Score : {score}");
+            Console.SetCursorPosition(0, 1);
+            Console.Out.WriteLine("Score : {0}", score);
 
         }
 
@@ -163,31 +163,30 @@ namespace Tetris.Game
         {
             var oldPos = MovingBlock.ToPostitions();
             MovingBlock.Rotate();
-            ClearAndRender(oldPos,MovingBlock.ToPostitions());
+            ClearAndRender(oldPos, MovingBlock.ToPostitions());
         }
 
         public void MoveDown()
         {
+            if (gameOver) return;
             canMove = false;
             var curentPos = MovingBlock.ToPostitions();
             var touch = false;
             while (!touch)
             {
                 touch = MovingBlock.ToucingOnNextMove(0, 1, stillBlocks);
-            } 
+            }
 
             ClearAndRender(curentPos, stillBlocks);
-
-
         }
 
-       
 
-        private void ClearAndRender(List<Block> BlocksToRemove,List<Block>BlocksToRender, bool canMoveAfter = true)
+
+        private void ClearAndRender(List<Block> blocksToRemove, List<Block> blocksToRender, bool canMoveAfter = true)
         {
             canMove = false;
-            Render(' ', BlocksToRemove);
-            Render('O',BlocksToRender);
+            Render(' ', blocksToRemove);
+            Render('O', blocksToRender);
             canMove = canMoveAfter;
 
         }
@@ -197,9 +196,9 @@ namespace Tetris.Game
             Thread.Sleep(1000);
             while (!gameOver)
             {
-                Move(0,1);
+                Move(0, 1);
                 var speed = 500;
-                if (score <300)
+                if (score < 300)
                 {
                     speed = speed - score;
                 }
@@ -210,5 +209,5 @@ namespace Tetris.Game
 
     }
 
-    
+
 }

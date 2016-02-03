@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Tetris.Game.FaloingTypes
+namespace Tetris.Game.Fallingtype
 {
     class ReverseL:FallingType
     {

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Tetris.Game;
-using Tetris.Game.FaloingTypes;
 
-namespace Tetris
+namespace Tetris.Game.Fallingtype
 {
     class Long:FallingType
     {

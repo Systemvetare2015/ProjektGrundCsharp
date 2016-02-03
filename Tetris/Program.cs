@@ -13,7 +13,7 @@ namespace Tetris
             while (true)
             {
                 
-                var alternatives = new List<string> {"Spela" ,"Kolla statistik"};
+                var alternatives = new List<string> {"Spela" ,"Kolla statistik","ska[a anvan"};
                 var val = MenuHelper.AskFromAlternative("hej! vad vill du göra?", alternatives);
                 switch (val)
                 {
@@ -41,7 +41,7 @@ namespace Tetris
         {
             userStats.ForEach((stat =>
             {
-                Console.Out.WriteLine($"{stat.Namn} : {stat.Score}");
+                Console.Out.WriteLine("{0} : {1}",stat.Namn,stat.Score);
             }));
             Console.ReadKey();
         }
@@ -49,7 +49,7 @@ namespace Tetris
         private static int PlayGame()
         {
             var tetrisGame = new TetrisGame();
-            Thread childThread = new Thread(tetrisGame.Run);
+            var childThread = new Thread(tetrisGame.Run);
             childThread.Start();
             ConsoleKeyInfo keyInfo;
             while ((keyInfo = Console.ReadKey(true)).Key != ConsoleKey.Escape)

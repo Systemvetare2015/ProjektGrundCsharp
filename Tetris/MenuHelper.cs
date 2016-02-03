@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 
 namespace Tetris
@@ -14,15 +14,15 @@ namespace Tetris
         public static int AskFromAlternative(string message, List<string> alternatives)
         {
             var returnIndex = 0;
-            
-            if(alternatives == null)
+
+            if (alternatives == null)
                 throw new ArgumentNullException();
             if (alternatives.Count == 0)
                 throw new ArgumentNullException();
             Console.Clear();
             var longestQuestion = message.Length;
             Console.Out.WriteLine();
-            Console.Out.WriteLine($"X   {message}");
+            Console.Out.WriteLine("X   {0}", message);
             Console.Out.WriteLine();
 
             var menuPos = Console.CursorTop;
@@ -30,15 +30,15 @@ namespace Tetris
             {
                 var alternative = alternatives[j].Trim();
                 longestQuestion = alternative.Length > longestQuestion ? alternative.Length : longestQuestion;
-                Console.Out.WriteLine($"X  {j+1} {alternative}");
+                Console.Out.WriteLine("X  {0} {1}", j + 1, alternative);
             }
-                
-            
-            Console.Out.WriteLine(new string('X',longestQuestion+7));
+
+
+            Console.Out.WriteLine(new string('X', longestQuestion + 7));
             WriteToPos(0, 0, new string('X', longestQuestion + 7));
             WriteToPos(0, 2, new string('X', longestQuestion + 7));
 
-            for (int i = 0; i < alternatives.Count+menuPos; i++)
+            for (int i = 0; i < alternatives.Count + menuPos; i++)
             {
                 WriteToPos(longestQuestion + 6, i, "X");
 
@@ -54,13 +54,13 @@ namespace Tetris
                         if (returnIndex > 0)
                         {
                             WriteToPos(2, Console.CursorTop, " ");
-                            returnIndex --;
+                            returnIndex--;
 
                             WriteToPos(2, menuPos + returnIndex, ">", ConsoleColor.Green);
                         }
                         break;
                     case ConsoleKey.DownArrow:
-                        if (returnIndex < alternatives.Count-1)
+                        if (returnIndex < alternatives.Count - 1)
                         {
                             WriteToPos(2, Console.CursorTop, " ");
                             returnIndex++;
@@ -74,9 +74,9 @@ namespace Tetris
             Console.Clear();
             return returnIndex;
         }
-        
 
-        private static void WriteToPos(int x,int y,string ouput,ConsoleColor color = ConsoleColor.White)
+
+        private static void WriteToPos(int x, int y, string ouput, ConsoleColor color = ConsoleColor.White)
         {
             Console.SetCursorPosition(x, y);
             Console.ForegroundColor = color;
