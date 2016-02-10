@@ -99,7 +99,7 @@ namespace Tetris.Game
             if (first && bottom)
             {
                 GameOver();
-                return;y
+                return;
             }
             first = false;
             if (bottom)
