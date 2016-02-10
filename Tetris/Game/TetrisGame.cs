@@ -57,6 +57,13 @@ namespace Tetris.Game
                 case 4:
                     MovingBlock = new Cube();
                     break;
+                case 5:
+                    MovingBlock = new Z();
+                    break;
+                case 6:
+                    MovingBlock = new ReverseZ();
+                    break;
+
             }
             first = true;
 
@@ -92,7 +99,7 @@ namespace Tetris.Game
             if (first && bottom)
             {
                 GameOver();
-                return;
+                return;y
             }
             first = false;
             if (bottom)
@@ -118,9 +125,10 @@ namespace Tetris.Game
 
         public void CheckIfRowIsFull()
         {
+            
             var toRemove = new List<Block>();
             var moved = false;
-
+            var rowsRemoved = 0;
             do
             {
                 moved = false;
@@ -130,7 +138,7 @@ namespace Tetris.Game
                     var sameRow = stillBlocks.Where(block => block.Y == i).ToList();
                     if (sameRow.Count() > 10)
                     {
-                        score = score + 10;
+                        rowsRemoved++;
                         UpdateScore();
                         sameRow.ForEach((block => stillBlocks.Remove(block)));
                         toRemove.AddRange(sameRow);
@@ -149,6 +157,8 @@ namespace Tetris.Game
 
                 }
             } while (moved);
+            score = score + (10 * (rowsRemoved * rowsRemoved));
+
             ClearAndRender(toRemove, stillBlocks);
         }
 
@@ -168,6 +178,7 @@ namespace Tetris.Game
 
         public void MoveDown()
         {
+            if (!canMove) return;
             if (gameOver) return;
             canMove = false;
             var curentPos = MovingBlock.ToPostitions();
@@ -190,17 +201,25 @@ namespace Tetris.Game
             canMove = canMoveAfter;
 
         }
+
+        public void Stop()
+        {
+            gameOver = true;
+            Console.Clear();
+        }
         public void Run()
         {
+            var def = 500;
             addTemps();
             Thread.Sleep(1000);
+            var speed = 500;
+
             while (!gameOver)
             {
                 Move(0, 1);
-                var speed = 500;
                 if (score < 300)
                 {
-                    speed = speed - score;
+                    speed = def - score;
                 }
                 Thread.Sleep(speed);
             }

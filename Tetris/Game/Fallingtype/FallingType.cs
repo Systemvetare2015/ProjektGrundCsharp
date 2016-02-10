@@ -14,7 +14,7 @@ namespace Tetris.Game.Fallingtype
         public  int Y { get; set; }
         public  int X { get; set; }
         public abstract ConsoleColor Color { get; }
-        public  List<RefPos> RefPoses { get;set;}
+        public  List<RefPos> RefPoses { get; set; }
         public List<Block> ToPostitions()
         {
             return RefPoses.Select((block => new Block(Color, X + block.X,block.Y + Y))).ToList();

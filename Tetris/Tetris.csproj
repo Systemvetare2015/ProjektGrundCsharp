@@ -47,12 +47,17 @@
     <Compile Include="Game\Fallingtype\L.cs" />
     <Compile Include="Game\Fallingtype\Long.cs" />
     <Compile Include="Game\Fallingtype\ReverseL.cs" />
+    <Compile Include="Game\Fallingtype\ReverseZ.cs" />
     <Compile Include="Game\Fallingtype\Triangle.cs" />
+    <Compile Include="Game\Fallingtype\Z.cs" />
     <Compile Include="Game\RefPos.cs" />
     <Compile Include="Game\screen.cs" />
     <Compile Include="MenuHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Score.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserContainer.cs" />
     <Compile Include="UserStat.cs" />
   </ItemGroup>
   <ItemGroup>

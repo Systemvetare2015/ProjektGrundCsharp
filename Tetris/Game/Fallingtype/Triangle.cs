@@ -7,8 +7,9 @@ namespace Tetris.Game.Fallingtype
     {
         public Triangle()
         {
-            RefPoses = new List<RefPos> {new RefPos(-1, 0), new RefPos(0, 0), new RefPos(+1, 0), new RefPos(0, -1)};
+            RefPoses = new List<RefPos>(){ new RefPos(-1, 0), new RefPos(0, 0), new RefPos(+1, 0), new RefPos(0, -1) };
         }
-        public override ConsoleColor Color {get { return ConsoleColor.Cyan; }}
+        public override ConsoleColor Color { get { return ConsoleColor.Cyan; }}
+
     }
 }
