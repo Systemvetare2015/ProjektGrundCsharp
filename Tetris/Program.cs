@@ -6,6 +6,7 @@ namespace Tetris
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(" test");
             var exit = false;
             while (!exit)
             {
