@@ -6,16 +6,16 @@ namespace Tetris
 {
     class Program
     {
-        private static string _newLine;
+
 
         static void Main(string[] args)
         {
             MainMeny();
 
 
-            var MenyVal = int.Parse(Console.ReadLine());
+            var menyVal = int.Parse(Console.ReadLine());
 
-            switch (MenyVal)
+            switch (menyVal)
             {
                 case 1:
                     Console.Clear();
@@ -24,6 +24,10 @@ namespace Tetris
 
                 case 2:
                     HighScore();
+                    break;
+
+                case 3:
+                    EndProgram();
                     break;
 
             }
@@ -38,6 +42,7 @@ namespace Tetris
             Console.WriteLine(" =================================" + Environment.NewLine);
             Console.WriteLine(" 1. Spela ");
             Console.WriteLine(" 2. Se end credit ");
+            Console.ReadKey();
 
 
             int menyVal1 = int.Parse(Console.ReadLine());
@@ -58,10 +63,10 @@ namespace Tetris
                     Console.WriteLine(" ============================");
                     Console.WriteLine("         END CREDIT          ");
                     Console.WriteLine(" ============================" + Environment.NewLine);
-                    _newLine = Environment.NewLine;
+
                     Console.WriteLine(" Felix Svensson - Gamedesigner" + Environment.NewLine);
                     Console.WriteLine(" Martin Olsson - Menymaker");
-                    Console.ReadLine();
+
                     Console.Clear();
 
                     MainMeny();
@@ -85,7 +90,7 @@ namespace Tetris
             Console.WriteLine(" =======================================================");
             Console.WriteLine(" ");
             Console.WriteLine(" 1. Logga in och spela   2. Visa Highscore    3. Avsluta ");
-
+            Console.ReadKey();
 
         }
 
@@ -93,10 +98,27 @@ namespace Tetris
         {
             Console.Clear();
             Console.WriteLine("===================== Top 5 Highscores ==================");
-            // anropa highscores
-            Console.ReadKey();
+            // anropa lista highscores
+            Console.ReadLine();
             MainMeny();
 
+        }
+
+        private static void EndProgram()
+        {
+            Console.WriteLine("Är du säker att du vill avsluta? (Ja/Nej");
+            string endanswer = Console.ReadLine();
+            Console.ReadKey();
+
+            if (endanswer == "1")
+            {
+
+                Environment.Exit(0);
+            }
+            else
+            {
+                MainMeny();
+            }
         }
 
     }
