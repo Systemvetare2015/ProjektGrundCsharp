@@ -10,6 +10,8 @@ namespace Tetris
 
         static void Main(string[] args)
         {
+            //var score = TetrisGame.Play();
+
             MainMeny();
 
 
