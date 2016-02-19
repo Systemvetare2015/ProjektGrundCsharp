@@ -1,7 +1,5 @@
 ﻿﻿using System;
-﻿using System.CodeDom;
 ﻿using System.Collections.Generic;
-﻿using System.Dynamic;
 ﻿using System.Linq;
 using System.Threading;
 ﻿using Tetris.Game.Fallingtype;
