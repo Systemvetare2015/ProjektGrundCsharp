@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using Tetris.Game;
+using Tetris.Snake;
 
 namespace Tetris
 {
@@ -11,6 +12,8 @@ namespace Tetris
         static void Main(string[] args)
         {
             //var score = TetrisGame.Play();
+            SnakeGame.Play();
+            Console.ReadKey();
 
             MainMeny();
 
@@ -47,6 +50,7 @@ namespace Tetris
             Console.ReadKey();
 
 
+            
             int menyVal1 = int.Parse(Console.ReadLine());
 
             switch (menyVal1)
