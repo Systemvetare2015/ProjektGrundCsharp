@@ -13,7 +13,6 @@ namespace Tetris
         {
             //var score = TetrisGame.Play();
             SnakeGame.Play();
-            Console.ReadKey();
 
             MainMeny();
 

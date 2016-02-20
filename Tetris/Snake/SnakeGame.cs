@@ -11,17 +11,17 @@ namespace Tetris.Snake
         {
             get { return 40; }
         }
-        private int GameTopPos { get; set; }
-        public int Score { get; set; }
+
+        private int GameTopPos = 2;
+        public int Score = 0;
         
         private RefPos Meat { get; set; }
         private Snake Snake { get; set; }
         private Random random = new Random();
+        private bool GameOver = false;
 
         public SnakeGame()
         {
-            GameTopPos = 2;
-            Score = 0;
             Console.CursorVisible = false;
             Snake = new Snake(gameSize);
             GetRandomFood();
@@ -30,7 +30,7 @@ namespace Tetris.Snake
         
         public void Run()
         {
-            while (!TouchWall())
+            while (!TouchWall() && !GameOver)
             {
                 Snake.Move();
                 if (Snake.TouchSelf())
@@ -40,9 +40,13 @@ namespace Tetris.Snake
                 Thread.Sleep(200);
             }
             Console.Clear();
-            Console.Out.WriteLine("GameOver");
+            Console.Out.WriteLine("GameOver \nPress Esc to leave");
         }
 
+        public void Stop()
+        {
+            GameOver = true;
+        }
         private void GetRandomFood()
         {
             Meat = new RefPos(random.Next(1, gameSize - 2), random.Next(1, gameSize / 2));
@@ -113,6 +117,8 @@ namespace Tetris.Snake
                 }
 
             }
+            snakeGame.Stop();
+            Console.Clear();
             return snakeGame.Score;
         }
     }
