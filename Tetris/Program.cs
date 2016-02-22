@@ -9,10 +9,10 @@ namespace Tetris
     {
 
 
-        static void Main(string[] args)
+        static void Main(string[] args) 
         {
-            //var score = TetrisGame.Play();
-            SnakeGame.Play();
+            //var tetrisScore = TetrisGame.Play();
+            var snakeScore = SnakeGame.Play();
 
             MainMeny();
 
