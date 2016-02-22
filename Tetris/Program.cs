@@ -61,6 +61,9 @@ namespace Tetris
                     Console.WriteLine(" ===========================" + Environment.NewLine);
                     Console.Write(" Namn:       ");
                     string playername = Console.ReadLine();
+                    var newPlayer = new Player(playername);
+                    newPlayer.Score = TetrisGame.Play();
+                    newPlayer.Game = Player.GameType.Tetris;
                     // starta spel
                     break;
 
@@ -95,7 +98,7 @@ namespace Tetris
             Console.WriteLine(" =======================================================");
             Console.WriteLine(" ");
             Console.WriteLine(" 1. Logga in och spela   2. Visa Highscore    3. Avsluta ");
-            Console.ReadKey();
+            
 
         }
 
