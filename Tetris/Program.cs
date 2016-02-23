@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
+using System.Runtime.CompilerServices;
 using Tetris.Game;
 using Tetris.Snake;
 
@@ -12,7 +14,7 @@ namespace Tetris
         static void Main(string[] args) 
         {
             //var tetrisScore = TetrisGame.Play();
-            var snakeScore = SnakeGame.Play();
+            //var snakeScore = SnakeGame.Play();
 
             MainMeny();
 
@@ -46,7 +48,7 @@ namespace Tetris
             Console.WriteLine(" =================================" + Environment.NewLine);
             Console.WriteLine(" 1. Spela ");
             Console.WriteLine(" 2. Se end credit ");
-            Console.ReadKey();
+            
 
 
             
@@ -62,9 +64,26 @@ namespace Tetris
                     Console.Write(" Namn:       ");
                     string playername = Console.ReadLine();
                     var newPlayer = new Player(playername);
-                    newPlayer.Score = TetrisGame.Play();
-                    newPlayer.Game = Player.GameType.Tetris;
-                    // starta spel
+                    Console.WriteLine(" Hej " + playername +", vad vill du spela? (Svara 1 eller 2)");
+                    Console.WriteLine("1. Tetris" +Environment.NewLine+ "2. Snake ");
+                    string gamechoice = Console.ReadLine();
+                       
+                    if (gamechoice == "1")
+                    {
+                        newPlayer.Score = TetrisGame.Play();
+                        newPlayer.Game = Player.GameType.Tetris;
+                    }
+                    else if (gamechoice == "2")
+                    {
+                        var snakeScore = SnakeGame.Play();
+                    }
+                    else
+                    {
+                        Console.WriteLine(" Du matade in fel, försök igen!");
+                        Console.ReadKey();
+                        
+                    }
+ 
                     break;
 
                 case 2:
@@ -106,9 +125,16 @@ namespace Tetris
         {
             Console.Clear();
             Console.WriteLine("===================== Top 5 Highscores ==================");
-            // anropa lista highscores
+            StreamReader infil = new StreamReader("scores.csv");
+            while (true)
+            {
+                string line = infil.ReadLine();
+                if (line == null) break;
+                Console.WriteLine(line);
+            }
+            infil.Close();
             Console.ReadLine();
-            MainMeny();
+            
 
         }
 

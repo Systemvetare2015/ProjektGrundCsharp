@@ -63,7 +63,7 @@ namespace Tetris.Game
                     newBlock = new Z(); break;
                 case 6:
                     newBlock = new ReverseZ(); break;
-                    break;
+                    
 
             }
             return newBlock;
