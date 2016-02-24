@@ -16,7 +16,7 @@ namespace Tetris
 
         private void ReadFromFile()
         {
-            using (var reader = new StreamReader(File.OpenRead(filename)))
+            using (var reader = new StreamReader(File.OpenRead(filename))) 
             {
                 int index = 0;
                 while (!reader.EndOfStream)

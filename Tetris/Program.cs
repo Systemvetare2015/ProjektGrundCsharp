@@ -11,33 +11,12 @@ namespace Tetris
     {
 
 
-        static void Main(string[] args) 
+        static void Main(string[] args)
         {
             //var tetrisScore = TetrisGame.Play();
             //var snakeScore = SnakeGame.Play();
 
             MainMeny();
-
-
-            var menyVal = int.Parse(Console.ReadLine());
-
-            switch (menyVal)
-            {
-                case 1:
-                    Console.Clear();
-                    MenyVal1();
-                    break;
-
-                case 2:
-                    HighScore();
-                    break;
-
-                case 3:
-                    EndProgram();
-                    break;
-
-            }
-
 
         }
 
@@ -48,10 +27,10 @@ namespace Tetris
             Console.WriteLine(" =================================" + Environment.NewLine);
             Console.WriteLine(" 1. Spela ");
             Console.WriteLine(" 2. Se end credit ");
-            
 
 
-            
+
+
             int menyVal1 = int.Parse(Console.ReadLine());
 
             switch (menyVal1)
@@ -64,10 +43,10 @@ namespace Tetris
                     Console.Write(" Namn:       ");
                     string playername = Console.ReadLine();
                     var newPlayer = new Player(playername);
-                    Console.WriteLine(" Hej " + playername +", vad vill du spela? (Svara 1 eller 2)");
-                    Console.WriteLine("1. Tetris" +Environment.NewLine+ "2. Snake ");
+                    Console.WriteLine(" Hej " + playername + ", vad vill du spela? (Svara 1 eller 2)");
+                    Console.WriteLine("1. Tetris" + Environment.NewLine + "2. Snake ");
                     string gamechoice = Console.ReadLine();
-                       
+
                     if (gamechoice == "1")
                     {
                         newPlayer.Score = TetrisGame.Play();
@@ -81,9 +60,9 @@ namespace Tetris
                     {
                         Console.WriteLine(" Du matade in fel, försök igen!");
                         Console.ReadKey();
-                        
+
                     }
- 
+
                     break;
 
                 case 2:
@@ -109,6 +88,7 @@ namespace Tetris
 
         private static void MainMeny()
         {
+            Console.Clear();
             Console.WriteLine(" =======================================================");
             Console.WriteLine(" =========           Welcome Player!           =========");
             Console.WriteLine(" =======================================================");
@@ -117,46 +97,67 @@ namespace Tetris
             Console.WriteLine(" =======================================================");
             Console.WriteLine(" ");
             Console.WriteLine(" 1. Logga in och spela   2. Visa Highscore    3. Avsluta ");
-            
+            var menyVal = int.Parse(Console.ReadLine());
 
+            switch (menyVal)
+            {
+                case 1:
+                    Console.Clear();
+                    MenyVal1();
+                    break;
+
+                case 2:
+                    HighScore();
+                    break;
+
+                case 3:
+                    EndProgram();
+                    break;
+                default: 
+                    Console.Clear();
+                    Console.WriteLine(" ===================================");
+                    Console.WriteLine(" Du angav fel menyval, försök igen!");
+                    Console.WriteLine(" ===================================");
+                    Console.ReadKey();
+
+                    MainMeny();
+                    break;
+
+            }
         }
 
         private static void HighScore()
         {
             Console.Clear();
             Console.WriteLine("===================== Top 5 Highscores ==================");
-            StreamReader infil = new StreamReader("scores.csv");
-            while (true)
-            {
-                string line = infil.ReadLine();
-                if (line == null) break;
-                Console.WriteLine(line);
-            }
-            infil.Close();
-            Console.ReadLine();
-            
+            // StreamReader infil = new StreamReader("scores.csv");
+            // while (true)
+            // {
+            //      string line = infil.ReadLine();
+            //      if (line == null) break;
+            //      Console.WriteLine(line);
+            //  }
+            //  infil.Close();
+            //  Console.ReadLine();
+
 
         }
 
         private static void EndProgram()
         {
-            Console.WriteLine("Är du säker att du vill avsluta? (Ja/Nej");
-            string endanswer = Console.ReadLine();
-            Console.ReadKey();
-
-            if (endanswer == "1")
-            {
-
-                Environment.Exit(0);
-            }
-            else
+            Console.Clear();
+            Console.WriteLine(" Är du säker att du vill avsluta? \n 1. Ja\n 2. Nej ");
+            var programEnd = Console.ReadLine();
+            while (programEnd != "1")
             {
                 MainMeny();
+                Console.ReadKey();
             }
+            Environment.Exit(1);
+
         }
 
     }
-
-    }
+}
 
 
