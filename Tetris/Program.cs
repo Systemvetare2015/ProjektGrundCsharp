@@ -22,6 +22,7 @@ namespace Tetris
 
         public static void MenyVal1()
         {
+            Console.Clear();
             Console.WriteLine(" =================================");
             Console.WriteLine(" Välj ett av följande alternativ: ");
             Console.WriteLine(" =================================" + Environment.NewLine);
@@ -59,8 +60,9 @@ namespace Tetris
                     else
                     {
                         Console.WriteLine(" Du matade in fel, försök igen!");
+                        
                         Console.ReadKey();
-
+                        MenyVal1();
                     }
 
                     break;
@@ -79,6 +81,16 @@ namespace Tetris
 
 
                     break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine(" ===================================");
+                    Console.WriteLine(" Du angav fel menyval, försök igen!");
+                    Console.WriteLine(" ===================================");
+                    Console.ReadKey();
+
+                    MenyVal1();
+                    break;
+
 
 
 
@@ -96,7 +108,7 @@ namespace Tetris
             Console.WriteLine(" =========     Välj ett alternativen nedan:    =========");
             Console.WriteLine(" =======================================================");
             Console.WriteLine(" ");
-            Console.WriteLine(" 1. Logga in och spela   2. Visa Highscore    3. Avsluta ");
+            Console.WriteLine(" 1. Spela   2. Visa Highscore    3. Avsluta ");
             var menyVal = int.Parse(Console.ReadLine());
 
             switch (menyVal)
@@ -130,7 +142,8 @@ namespace Tetris
         {
             Console.Clear();
             Console.WriteLine("===================== Top 5 Highscores ==================");
-            // StreamReader infil = new StreamReader("scores.csv");
+            SavetoFile();
+            // system.io StreamReader infil = new StreamReader("scores.csv");
             // while (true)
             // {
             //      string line = infil.ReadLine();
