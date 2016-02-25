@@ -142,7 +142,7 @@ namespace Tetris
         {
             Console.Clear();
             Console.WriteLine("===================== Top 5 Highscores ==================");
-            SavetoFile();
+            //SavetoFile();
             // system.io StreamReader infil = new StreamReader("scores.csv");
             // while (true)
             // {

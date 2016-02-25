@@ -19,27 +19,21 @@ namespace Tetris
         private void SavetoFile()
         {
             // skriva till fil
-            System.IO.StreamWriter utfil = new StreamWriter("Testa.txt");
-            utfil.Write("Du kan använda samma metoder här ");
-            utfil.WriteLine(filename);
-            utfil.Close();
-
-            // läsa från fil
-            //StreamReader infil = new StreamReader("Testa.txt");
-           //  while (true)
-          //  {
-            //    string line = infil.ReadLine();
-          //      if (line == null) break;
-          //      Console.WriteLine(line);
-         //   }
-         //   infil.Close();
-
+            using (var utfil = new StreamWriter("Testa.txt",false))
+            {
+                foreach (var player in Scores)
+                {
+                    utfil.WriteLine("{0};{1};{2};{3}", player.PlayerName, player.Score, player.TimePlayed, ConvertToInt(player.Game));
+                    
+                }
+                utfil.Close();
+            }
 
         }
 
         private void ReadFromFile()
         {
-            using (var reader = new StreamReader(File.OpenRead(filename))) 
+            using (var reader = new StreamReader(File.OpenRead(filename)))
             {
                 int index = 0;
                 while (!reader.EndOfStream)
@@ -62,6 +56,7 @@ namespace Tetris
         {
             Scores = ExpandArray(Scores, newPlayer);
             Sort(Scores);
+            SavetoFile();
         }
 
         private void Sort(Player[] scores)
