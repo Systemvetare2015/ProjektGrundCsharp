@@ -11,6 +11,7 @@ namespace Tetris
     {
 
 
+
         static void Main(string[] args)
         {
             //var tetrisScore = TetrisGame.Play();
@@ -20,7 +21,7 @@ namespace Tetris
 
         }
 
-        public static void MenyVal1()
+        public static void MenyVal1(PlayerScores playerDB)
         {
             Console.Clear();
             Console.WriteLine(" =================================");
@@ -52,17 +53,22 @@ namespace Tetris
                     {
                         newPlayer.Score = TetrisGame.Play();
                         newPlayer.Game = Player.GameType.Tetris;
+                        playerDB.AddPlayer(newPlayer);
                     }
                     else if (gamechoice == "2")
                     {
-                        var snakeScore = SnakeGame.Play();
+                        newPlayer.Score = SnakeGame.Play();
+                        newPlayer.Game = Player.GameType.Snake;
+                        playerDB.AddPlayer(newPlayer);
+
+
                     }
                     else
                     {
                         Console.WriteLine(" Du matade in fel, försök igen!");
-                        
+
                         Console.ReadKey();
-                        MenyVal1();
+                        MenyVal1(playerDB);
                     }
 
                     break;
@@ -88,7 +94,7 @@ namespace Tetris
                     Console.WriteLine(" ===================================");
                     Console.ReadKey();
 
-                    MenyVal1();
+                    MenyVal1(playerDB);
                     break;
 
 
@@ -100,59 +106,62 @@ namespace Tetris
 
         private static void MainMeny()
         {
-            Console.Clear();
-            Console.WriteLine(" =======================================================");
-            Console.WriteLine(" =========           Welcome Player!           =========");
-            Console.WriteLine(" =======================================================");
-
-            Console.WriteLine(" =========     Välj ett alternativen nedan:    =========");
-            Console.WriteLine(" =======================================================");
-            Console.WriteLine(" ");
-            Console.WriteLine(" 1. Spela   2. Visa Highscore    3. Avsluta ");
-            var menyVal = int.Parse(Console.ReadLine());
-
-            switch (menyVal)
+            var playerDB = new PlayerScores();
+            var running = true;
+            while (running)
             {
-                case 1:
-                    Console.Clear();
-                    MenyVal1();
-                    break;
 
-                case 2:
-                    HighScore();
-                    break;
+                Console.Clear();
+                Console.WriteLine(" =======================================================");
+                Console.WriteLine(" =========           Welcome Player!           =========");
+                Console.WriteLine(" =======================================================");
 
-                case 3:
-                    EndProgram();
-                    break;
-                default: 
-                    Console.Clear();
-                    Console.WriteLine(" ===================================");
-                    Console.WriteLine(" Du angav fel menyval, försök igen!");
-                    Console.WriteLine(" ===================================");
-                    Console.ReadKey();
+                Console.WriteLine(" =========     Välj ett alternativen nedan:    =========");
+                Console.WriteLine(" =======================================================");
+                Console.WriteLine(" ");
+                Console.WriteLine(" 1. Spela   2. Visa Highscore    3. Avsluta ");
+                var menyVal = int.Parse(Console.ReadLine());
 
-                    MainMeny();
-                    break;
+                switch (menyVal)
+                {
+                    case 1:
+                        Console.Clear();
+                        MenyVal1(playerDB);
+                        break;
 
+                    case 2:
+                        HighScore(playerDB.GetAllPlayerScores());
+                        Console.ReadKey();
+
+                        break;
+
+                    case 3:
+                        running = false;
+                        EndProgram();
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine(" ===================================");
+                        Console.WriteLine(" Du angav fel menyval, försök igen!");
+                        Console.WriteLine(" ===================================");
+                        Console.ReadKey();
+
+                        MainMeny();
+                        break;
+
+                }
             }
+
         }
 
-        private static void HighScore()
+        private static void HighScore(Player[] PlayerScores)
         {
             Console.Clear();
             Console.WriteLine("===================== Top 5 Highscores ==================");
-            //SavetoFile();
-            // system.io StreamReader infil = new StreamReader("scores.csv");
-            // while (true)
-            // {
-            //      string line = infil.ReadLine();
-            //      if (line == null) break;
-            //      Console.WriteLine(line);
-            //  }
-            //  infil.Close();
-            //  Console.ReadLine();
-
+            for (int i = 0; i < PlayerScores.Length; i++)
+            {
+                Console.WriteLine("{0}. {1} : {2} : {3}", i + 1, PlayerScores[i].PlayerName, PlayerScores[i].Score, PlayerScores[i].Game);
+            }
 
         }
 

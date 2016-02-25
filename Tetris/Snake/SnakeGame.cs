@@ -53,6 +53,7 @@ namespace Tetris.Snake
         }
         private void Render()
         {
+            
             Console.SetCursorPosition(0, 0);
             Console.Out.WriteLine("Snake");
             Console.Out.WriteLine("Score: {0}",Score);
@@ -100,6 +101,7 @@ namespace Tetris.Snake
         }
         public static int Play()
         {
+            Console.Clear();
             var snakeGame = new SnakeGame();
             Thread childThread = new Thread(snakeGame.Run);
             childThread.Start();
