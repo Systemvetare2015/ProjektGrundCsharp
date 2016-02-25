@@ -21,8 +21,10 @@ namespace Tetris
             // skriva till fil
             System.IO.StreamWriter utfil = new StreamWriter("Testa.txt");
             utfil.Write("Du kan använda samma metoder här ");
-            utfil.WriteLine(Scores.csv);
-            utfil.Close();            // läsa från fil
+            utfil.WriteLine(filename);
+            utfil.Close();
+
+            // läsa från fil
             //StreamReader infil = new StreamReader("Testa.txt");
            //  while (true)
           //  {
@@ -30,7 +32,9 @@ namespace Tetris
           //      if (line == null) break;
           //      Console.WriteLine(line);
          //   }
-         //   infil.Close();
+         //   infil.Close();
+
+
         }
 
         private void ReadFromFile()
