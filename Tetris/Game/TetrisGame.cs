@@ -1,7 +1,8 @@
 ﻿﻿using System;
 ﻿using System.Collections.Generic;
 ﻿using System.Linq;
-using System.Threading;
+﻿using System.Media;
+﻿using System.Threading;
 ﻿using Tetris.Game.Fallingtype;
 
 namespace Tetris.Game
@@ -16,8 +17,10 @@ namespace Tetris.Game
         List<Block> StillBlocks { get; set; }
         private bool _canMove = true;
         private bool _gameOver = false;
+        private SoundPlayer music = new SoundPlayer("tetris.wav");
         public TetrisGame()
         {
+            music.Play();
             NextMovingBlock = new Queue<FallingType>();
             NextMovingBlock.Enqueue(GetRandomBlock());
             NextMovingBlock.Enqueue(GetRandomBlock());
@@ -252,6 +255,7 @@ namespace Tetris.Game
         private void Stop()
         {
             _gameOver = true;
+            music.Stop();
             Console.Clear();
         }
         private void Run()
@@ -269,6 +273,8 @@ namespace Tetris.Game
                 }
                 Thread.Sleep(speed);
             }
+            music.Stop();
+
         }
         public delegate void RunBetweenRender();
 
