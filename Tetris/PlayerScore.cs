@@ -19,12 +19,11 @@ namespace Tetris
         private void SavetoFile()
         {
             // skriva till fil
-            using (var utfil = new StreamWriter("Testa.txt",false))
+            using (var utfil = new StreamWriter(filename,false))
             {
                 foreach (var player in Scores)
                 {
                     utfil.WriteLine("{0};{1};{2};{3}", player.PlayerName, player.Score, player.TimePlayed, ConvertToInt(player.Game));
-                    
                 }
                 utfil.Close();
             }
