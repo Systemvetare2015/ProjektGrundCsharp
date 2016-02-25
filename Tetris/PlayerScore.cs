@@ -11,19 +11,26 @@ namespace Tetris
 
         public PlayerScores()
         {
-            //ReadFromFile();
+            ReadFromFile();
             SavetoFile();
 
         }
 
         private void SavetoFile()
         {
-            // Example #1: Write an array of strings to a file.
-            // Create a string array that consists of three lines.
-            string[] lines = { "Scores" };
-            // WriteAllLines creates a file, writes a collection of strings to the file,
-            // and then closes the file.  You do NOT need to call Flush() or Close().
-            System.IO.File.WriteAllLines(@"C:\Users\barca\Documents\Highscore.txt", lines);
+            // skriva till fil
+            System.IO.StreamWriter utfil = new StreamWriter("Testa.txt");
+            utfil.Write("Du kan använda samma metoder här ");
+            utfil.WriteLine(Scores.csv);
+            utfil.Close();            // läsa från fil
+            //StreamReader infil = new StreamReader("Testa.txt");
+           //  while (true)
+          //  {
+            //    string line = infil.ReadLine();
+          //      if (line == null) break;
+          //      Console.WriteLine(line);
+         //   }
+         //   infil.Close();
         }
 
         private void ReadFromFile()
