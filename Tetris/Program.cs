@@ -14,11 +14,7 @@ namespace Tetris
 
         static void Main(string[] args)
         {
-            //var tetrisScore = TetrisGame.Play();
-            //var snakeScore = SnakeGame.Play();
-
             MainMeny();
-
         }
 
         public static void MenyVal1(PlayerScores playerDB)
@@ -121,6 +117,12 @@ namespace Tetris
                 Console.WriteLine(" ");
                 Console.WriteLine(" 1. Spela   2. Visa Highscore    3. Avsluta ");
                 var menyVal = int.Parse(Console.ReadLine());
+
+
+                
+
+
+
 
                 switch (menyVal)
                 {
