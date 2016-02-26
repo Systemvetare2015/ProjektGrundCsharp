@@ -26,7 +26,7 @@ namespace Tetris.Game.Fallingtype
             {
                 X=X + x;
             }
-            var touching = ToPostitions().Any(p => p.Y + y > 20 || stillBlocks.Any(v =>v.X== p.X && (v.Y -y)== p.Y));
+            var touching = ToPostitions().Any(p => p.Y + y > 20 || stillBlocks.Any(v =>v.X -x== p.X && (v.Y -y)== p.Y));
             if (!touching)
             {
                 Y = Y + y;
