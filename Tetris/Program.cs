@@ -158,12 +158,30 @@ namespace Tetris
 
         private static void HighScore(Player[] PlayerScores)
         {
+            
             Console.Clear();
-            Console.WriteLine("===================== Top 5 Highscores ==================");
+            Console.WriteLine(" Välj ett av följande alternativ!");
+            Console.WriteLine(" 1. Se highscore \n 2. Söka vilken plats du kom på");
+            
+            var menyval3 = int.Parse(Console.ReadLine());
+
+            switch (menyval3)
+            {
+                case 1:
+                       Console.WriteLine("===================== Top 5 Highscores ==================");
             for (int i = 0; i < PlayerScores.Length; i++)
             {
                 Console.WriteLine("{0}. {1} : {2} : {3}", i + 1, PlayerScores[i].PlayerName, PlayerScores[i].Score, PlayerScores[i].Game);
             }
+                    break;
+                case 2:
+                    
+                    
+                    break;
+
+
+            }
+
 
         }
 
