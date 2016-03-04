@@ -116,7 +116,7 @@ namespace Tetris
                 Console.WriteLine(" =======================================================");
                 Console.WriteLine(" ");
                 Console.WriteLine(" 1. Spela   2. Visa Highscore    3. Avsluta ");
-                var menyVal = int.Parse(Console.ReadLine());
+                var menyVal = int.TryParse(Console.ReadLine());
 
 
                 
@@ -156,11 +156,18 @@ namespace Tetris
 
         }
 
+        /// <summary>
+        /// kgfgf
+        /// g
+        /// g
+        /// rfe
+        /// 
+        /// </summary>
         private static void HighScore(Player[] PlayerScores)
         {
-            
+        //hjkhskaj    
             Console.Clear();
-            Console.WriteLine(" Välj ett av följande alternativ!");
+            Console.WriteLine(" Välj ett av följande alternativ!" + Environment.NewLine);
             Console.WriteLine(" 1. Se highscore \n 2. Söka vilken plats du kom på");
             
             var menyval3 = int.Parse(Console.ReadLine());
