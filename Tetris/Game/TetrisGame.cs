@@ -20,7 +20,7 @@ namespace Tetris.Game
         private SoundPlayer music = new SoundPlayer("tetris.wav");
         public TetrisGame()
         {
-            //music.Play();
+            music.Play();
             NextMovingBlock = new Queue<FallingType>();
             NextMovingBlock.Enqueue(GetRandomBlock());
             NextMovingBlock.Enqueue(GetRandomBlock());
@@ -66,7 +66,7 @@ namespace Tetris.Game
                     newBlock = new Z(); break;
                 case 6:
                     newBlock = new ReverseZ(); break;
-
+                    
 
             }
             return newBlock;
@@ -96,40 +96,47 @@ namespace Tetris.Game
 
         private void Right()
         {
-            Move(1, 0,true);
+            Move(1, 0);
         }
         private void Left()
         {
-
-
-            Move(-1, 0, true);
+            Move(-1, 0);
         }
 
 
-        private void Move(int x, int y, bool direction = false)
+        private void Move(int x, int y)
         {
             if (!_canMove) return;
             _canMove = false;
             var curretPos = MovingBlock.ToPostitions();
+            var tempx = MovingBlock.X;
+            var tempY= MovingBlock.Y;
             var bottom = MovingBlock.ToucingOnNextMove(x, y, StillBlocks);
             if (First && bottom)
             {
-                if (direction)
-                {
-                    GameOver();
-                    return;
-
-                }
+                GameOver();
+                return;
             }
             First = false;
             if (bottom)
             {
-                StillBlocks.AddRange(MovingBlock.ToPostitions());
-                addTemps();
-                ClearAndRender(new List<Block>(), StillBlocks, false);
-                CheckIfRowIsFull();
-                return;
+                if (direction)
+                {
+                    MovingBlock.X = tempx;
+                    MovingBlock.Y = tempY;
+                }
+                else
+                {
+                    StillBlocks.AddRange(MovingBlock.ToPostitions());
+                    addTemps();
+                    ClearAndRender(new List<Block>(), StillBlocks, false);
+                    CheckIfRowIsFull();
+                    return;
+
+                }
+                
             }
+            
             ClearAndRender(curretPos, MovingBlock.ToPostitions());
         }
 
@@ -189,7 +196,7 @@ namespace Tetris.Game
 
         }
 
-
+        
         private void Rotate()
         {
             var oldPos = MovingBlock.ToPostitions();
@@ -245,7 +252,7 @@ namespace Tetris.Game
                 Console.Out.WriteLine(pos + 1);
                 Render('O', temp.ToPostitions());
                 pos++;
-
+               
             }
         }
 
