@@ -20,7 +20,7 @@ namespace Tetris.Game
         private SoundPlayer music = new SoundPlayer("tetris.wav");
         public TetrisGame()
         {
-            //music.Play();
+            music.Play();
             NextMovingBlock = new Queue<FallingType>();
             NextMovingBlock.Enqueue(GetRandomBlock());
             NextMovingBlock.Enqueue(GetRandomBlock());
@@ -111,6 +111,8 @@ namespace Tetris.Game
             if (!_canMove) return;
             _canMove = false;
             var curretPos = MovingBlock.ToPostitions();
+            var tempx = MovingBlock.X;
+            var tempY= MovingBlock.Y;
             var bottom = MovingBlock.ToucingOnNextMove(x, y, StillBlocks);
             if (First && bottom)
             {
@@ -124,12 +126,23 @@ namespace Tetris.Game
             First = false;
             if (bottom)
             {
-                StillBlocks.AddRange(MovingBlock.ToPostitions());
-                addTemps();
-                ClearAndRender(new List<Block>(), StillBlocks, false);
-                CheckIfRowIsFull();
-                return;
+                if (direction)
+                {
+                    MovingBlock.X = tempx;
+                    MovingBlock.Y = tempY;
+                }
+                else
+                {
+                    StillBlocks.AddRange(MovingBlock.ToPostitions());
+                    addTemps();
+                    ClearAndRender(new List<Block>(), StillBlocks, false);
+                    CheckIfRowIsFull();
+                    return;
+
+                }
+                
             }
+            
             ClearAndRender(curretPos, MovingBlock.ToPostitions());
         }
 
