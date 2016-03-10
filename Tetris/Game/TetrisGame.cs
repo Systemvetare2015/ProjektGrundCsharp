@@ -18,6 +18,9 @@ namespace Tetris.Game
         private bool _canMove = true;
         private bool _gameOver = false;
         private SoundPlayer music = new SoundPlayer("tetris.wav");
+        /// <summary>
+        /// init game
+        /// </summary>
         public TetrisGame()
         {
             music.Play();
@@ -42,6 +45,10 @@ namespace Tetris.Game
             First = true;
         }
 
+        /// <summary>
+        /// Generate Random block
+        /// </summary>
+        /// <returns>Randon fallingtype</returns>
         private FallingType GetRandomBlock()
         {
             FallingType newBlock = new L();

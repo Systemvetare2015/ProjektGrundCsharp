@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Tetris.Game;
 using Tetris.Snake;
 
@@ -14,9 +15,8 @@ namespace Tetris
             //var tetrisScore = TetrisGame.Play();
             //var snakeScore = SnakeGame.Play();
 
-            //var answ = MenuHelper.Ask("hej");
-            //var result = playerDB.SearchPlayers(answ);
-            
+
+
             MainMeny();
 
         }
@@ -34,9 +34,13 @@ namespace Tetris
             int menyVal1 = 0;
 
 
-            while (!int.TryParse(Console.ReadLine(),out menyVal1))
+            while (menyVal1 < 1 || menyVal1 > 2)
             {
-                
+                if (!int.TryParse(Console.ReadLine(), out menyVal1))
+                {
+                    Console.Out.WriteLine("Du skrev fel");
+                    //skriv ut att han skrev fel
+                }
             }
 
 
@@ -115,7 +119,7 @@ namespace Tetris
         private static void MainMeny()
         {
             var playerDB = new PlayerScores();
-           
+
             var running = true;
             while (running)
             {
@@ -130,12 +134,16 @@ namespace Tetris
                 Console.WriteLine(" ");
                 Console.WriteLine(" 1. Spela   2. Visa Highscore    3. Avsluta ");
                 var menyVal = 0;
-
-
-                while (!int.TryParse(Console.ReadLine(), out menyVal))
+                while (menyVal < 1 || menyVal > 2)
                 {
-
+                    if (!int.TryParse(Console.ReadLine(), out menyVal))
+                    {
+                        Console.Out.WriteLine("Du skrev fel");
+                        //skriv ut att han skrev fel
+                    }
                 }
+
+                
                 switch (menyVal)
                 {
                     case 1:
@@ -144,7 +152,7 @@ namespace Tetris
                         break;
 
                     case 2:
-                        HighScore(playerDB.GetAllPlayerScores());
+                        HighScore(playerDB);
                         Console.ReadKey();
 
                         break;
@@ -168,14 +176,35 @@ namespace Tetris
 
         }
 
-        private static void HighScore(Player[] PlayerScores)
+        private static void HighScore(PlayerScores playerDB)
         {
-            Console.Clear();
-            Console.WriteLine("===================== Top 5 Highscores ==================");
-            for (int i = 0; i < PlayerScores.Length; i++)
+
+            var svar = MenuHelper.AskFromAlternative("Väj vad du vill göra",
+                new List<string>() { "sök på namn", "Visa topp lista" });
+
+            switch (svar)
             {
-                Console.WriteLine("{0}. {1} : {2} : {3}", i + 1, PlayerScores[i].PlayerName, PlayerScores[i].Score, PlayerScores[i].Game);
+                case 0:
+                    Console.Clear();
+                    var answ = MenuHelper.Ask("Skriv namn som du vill söka på");
+                    var result = playerDB.SearchPlayers(answ);
+                    for (int i = 0; i < result.Length; i++)
+                    {
+                        Console.WriteLine("{0}. {1} : {2} : {3}", i + 1, result[i].PlayerName, result[i].Score, result[i].Game);
+                    }
+                    break;
+                case 1:
+                    Console.Clear();
+                    Console.WriteLine("===================== Top 5 Highscores ==================");
+                    var all = playerDB.GetAllPlayerScores();
+                    for (int i = 0; i < all.Length; i++)
+                    {
+                        Console.WriteLine("{0}. {1} : {2} : {3}", i + 1, all[i].PlayerName, all[i].Score, all[i].Game);
+                    }
+                    break;
+
             }
+
 
         }
 

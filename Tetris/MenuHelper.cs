@@ -13,6 +13,7 @@ namespace Tetris
 
         public static int AskFromAlternative(string message, List<string> alternatives)
         {
+            Console.CursorVisible = false;
             var returnIndex = 0;
 
             if (alternatives == null)
@@ -72,6 +73,8 @@ namespace Tetris
             }
             Console.ResetColor();
             Console.Clear();
+            Console.CursorVisible = true;
+
             return returnIndex;
         }
 
