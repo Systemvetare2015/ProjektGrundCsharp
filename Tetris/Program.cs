@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Runtime.CompilerServices;
 using Tetris.Game;
 using Tetris.Snake;
 
@@ -17,6 +14,9 @@ namespace Tetris
             //var tetrisScore = TetrisGame.Play();
             //var snakeScore = SnakeGame.Play();
 
+            var answ = MenuHelper.Ask("hej");
+            var result = playerDB.SearchPlayers(answ);
+            
             MainMeny();
 
         }
@@ -107,6 +107,7 @@ namespace Tetris
         private static void MainMeny()
         {
             var playerDB = new PlayerScores();
+           
             var running = true;
             while (running)
             {

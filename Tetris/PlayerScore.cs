@@ -67,9 +67,9 @@ namespace Tetris
             var searchResult = new Player[0];
             foreach (var player in Scores)
             {
-                if (player.PlayerName.IndexOf(search,0, StringComparison.Ordinal) > -1)
+                if (player.PlayerName.ToLower().Contains(search.ToLower()))
                 {
-                    ExpandArray(searchResult, player);
+                    searchResult = ExpandArray(searchResult, player);
                 }
             }
             return searchResult;
