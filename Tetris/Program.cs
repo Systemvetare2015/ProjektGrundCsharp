@@ -14,11 +14,7 @@ namespace Tetris
 
         static void Main(string[] args)
         {
-            //var tetrisScore = TetrisGame.Play();
-            //var snakeScore = SnakeGame.Play();
-
             MainMeny();
-
         }
 
         public static void MenyVal1(PlayerScores playerDB)
@@ -120,7 +116,13 @@ namespace Tetris
                 Console.WriteLine(" =======================================================");
                 Console.WriteLine(" ");
                 Console.WriteLine(" 1. Spela   2. Visa Highscore    3. Avsluta ");
-                var menyVal = int.Parse(Console.ReadLine());
+                var menyVal = int.TryParse(Console.ReadLine());
+
+
+                
+
+
+
 
                 switch (menyVal)
                 {
@@ -154,14 +156,39 @@ namespace Tetris
 
         }
 
+        /// <summary>
+        /// kgfgf
+        /// g
+        /// g
+        /// rfe
+        /// 
+        /// </summary>
         private static void HighScore(Player[] PlayerScores)
         {
+        //hjkhskaj    
             Console.Clear();
-            Console.WriteLine("===================== Top 5 Highscores ==================");
+            Console.WriteLine(" Välj ett av följande alternativ!" + Environment.NewLine);
+            Console.WriteLine(" 1. Se highscore \n 2. Söka vilken plats du kom på");
+            
+            var menyval3 = int.Parse(Console.ReadLine());
+
+            switch (menyval3)
+            {
+                case 1:
+                       Console.WriteLine("===================== Top 5 Highscores ==================");
             for (int i = 0; i < PlayerScores.Length; i++)
             {
                 Console.WriteLine("{0}. {1} : {2} : {3}", i + 1, PlayerScores[i].PlayerName, PlayerScores[i].Score, PlayerScores[i].Game);
             }
+                    break;
+                case 2:
+                    
+                    
+                    break;
+
+
+            }
+
 
         }
 

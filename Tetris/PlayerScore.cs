@@ -7,7 +7,7 @@ namespace Tetris
     class PlayerScores
     {
         private Player[] Scores = new Player[0];
-        private string filename = "scores.csv";
+        private string filename = "scores.txt";
 
         public PlayerScores()
         {
