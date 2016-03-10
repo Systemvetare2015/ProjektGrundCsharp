@@ -61,6 +61,20 @@ namespace Tetris
             return Scores;
         }
 
+
+        public Player[] SearchPlayers(string search)
+        {
+            var searchResult = new Player[0];
+            foreach (var player in Scores)
+            {
+                if (player.PlayerName.IndexOf(search,0, StringComparison.Ordinal) > -1)
+                {
+                    ExpandArray(searchResult, player);
+                }
+            }
+            return searchResult;
+        }
+
         public void AddPlayer(Player newPlayer)
         {
             Scores = ExpandArray(Scores, newPlayer);
