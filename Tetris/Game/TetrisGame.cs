@@ -66,7 +66,7 @@ namespace Tetris.Game
                     newBlock = new Z(); break;
                 case 6:
                     newBlock = new ReverseZ(); break;
-
+                    
 
             }
             return newBlock;
@@ -96,17 +96,15 @@ namespace Tetris.Game
 
         private void Right()
         {
-            Move(1, 0,true);
+            Move(1, 0);
         }
         private void Left()
         {
-
-
-            Move(-1, 0, true);
+            Move(-1, 0);
         }
 
 
-        private void Move(int x, int y, bool direction = false)
+        private void Move(int x, int y)
         {
             if (!_canMove) return;
             _canMove = false;
@@ -116,12 +114,8 @@ namespace Tetris.Game
             var bottom = MovingBlock.ToucingOnNextMove(x, y, StillBlocks);
             if (First && bottom)
             {
-                if (direction)
-                {
-                    GameOver();
-                    return;
-
-                }
+                GameOver();
+                return;
             }
             First = false;
             if (bottom)
@@ -202,7 +196,7 @@ namespace Tetris.Game
 
         }
 
-
+        
         private void Rotate()
         {
             var oldPos = MovingBlock.ToPostitions();
@@ -258,7 +252,7 @@ namespace Tetris.Game
                 Console.Out.WriteLine(pos + 1);
                 Render('O', temp.ToPostitions());
                 pos++;
-
+               
             }
         }
 
