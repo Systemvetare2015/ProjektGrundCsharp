@@ -14,8 +14,8 @@ namespace Tetris
             //var tetrisScore = TetrisGame.Play();
             //var snakeScore = SnakeGame.Play();
 
-            var answ = MenuHelper.Ask("hej");
-            var result = playerDB.SearchPlayers(answ);
+            //var answ = MenuHelper.Ask("hej");
+            //var result = playerDB.SearchPlayers(answ);
             
             MainMeny();
 
@@ -31,9 +31,17 @@ namespace Tetris
             Console.WriteLine(" 2. Se end credit ");
 
 
+            int menyVal1 = 0;
 
 
-            int menyVal1 = int.Parse(Console.ReadLine());
+            while (!int.TryParse(Console.ReadLine(),out menyVal1))
+            {
+                
+            }
+
+
+
+            //int menyVal1 = int.Parse(Console.ReadLine());
 
             switch (menyVal1)
             {
@@ -121,8 +129,13 @@ namespace Tetris
                 Console.WriteLine(" =======================================================");
                 Console.WriteLine(" ");
                 Console.WriteLine(" 1. Spela   2. Visa Highscore    3. Avsluta ");
-                var menyVal = int.Parse(Console.ReadLine());
+                var menyVal = 0;
 
+
+                while (!int.TryParse(Console.ReadLine(), out menyVal))
+                {
+
+                }
                 switch (menyVal)
                 {
                     case 1:
