@@ -38,14 +38,14 @@ namespace Tetris
             {
                 if (!int.TryParse(Console.ReadLine(), out menyVal1))
                 {
-                    Console.Out.WriteLine("Du skrev fel");
-                    //skriv ut att han skrev fel
+                    Console.Out.WriteLine("Du skrev fel, välj mellan siffrorna på menyvalet! ");
+                    
                 }
             }
 
 
 
-            //int menyVal1 = int.Parse(Console.ReadLine());
+            
 
             switch (menyVal1)
             {
