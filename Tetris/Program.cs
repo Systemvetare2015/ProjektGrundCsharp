@@ -12,15 +12,13 @@ namespace Tetris
 
         static void Main(string[] args)
         {
-            //var tetrisScore = TetrisGame.Play();
-            //var snakeScore = SnakeGame.Play();
-
-
-
             MainMeny();
-
         }
-
+        /// <summary>
+        /// Metoden tar hand om alternativen inom menyval 1 (spela)
+        /// kontrolleras med en switch case
+        /// </summary>
+        
         public static void MenyVal1(PlayerScores playerDB)
         {
             Console.Clear();
@@ -40,12 +38,10 @@ namespace Tetris
                 {
                     Console.Out.WriteLine("Du skrev fel, välj mellan siffrorna på menyvalet! ");
                     
+                  
                 }
             }
 
-
-
-            
 
             switch (menyVal1)
             {
@@ -86,16 +82,18 @@ namespace Tetris
                     break;
 
                 case 2:
+                    Console.Clear();
                     Console.WriteLine(" ============================");
                     Console.WriteLine("         END CREDIT          ");
                     Console.WriteLine(" ============================" + Environment.NewLine);
 
                     Console.WriteLine(" Felix Svensson - Gamedesigner" + Environment.NewLine);
-                    Console.WriteLine(" Martin Olsson - Menymaker");
+                    Console.WriteLine(" Martin Olsson - Menymaker" + Environment.NewLine);
+                    Console.WriteLine(" Adam Strömberg - Textdesigner");
+                    Console.ReadLine();
+                    
 
-                    Console.Clear();
-
-                    MainMeny();
+                    
 
 
                     break;
@@ -115,7 +113,10 @@ namespace Tetris
 
             }
         }
-
+        /// <summary>
+        /// Metoden tar hand om Menyvalen som programmet erbjuder
+        /// Menyvalen hanteras med en switch case 
+        /// </summary>
         private static void MainMeny()
         {
             var playerDB = new PlayerScores();
@@ -134,12 +135,12 @@ namespace Tetris
                 Console.WriteLine(" ");
                 Console.WriteLine(" 1. Spela   2. Visa Highscore    3. Avsluta ");
                 var menyVal = 0;
-                while (menyVal < 1 || menyVal > 2)
+                while (menyVal < 1 || menyVal > 3)
                 {
                     if (!int.TryParse(Console.ReadLine(), out menyVal))
                     {
                         Console.Out.WriteLine("Du skrev fel");
-                        //skriv ut att han skrev fel
+                        
                     }
                 }
 
@@ -175,7 +176,10 @@ namespace Tetris
             }
 
         }
-
+        /// <summary>
+        /// Metoden tar hand om valen inom menyval 2 (Highscores)
+        /// </summary>
+        /// <param name="playerDB"></param>
         private static void HighScore(PlayerScores playerDB)
         {
 
@@ -207,7 +211,9 @@ namespace Tetris
 
 
         }
-
+        /// <summary>
+        /// Metoden tar hand om avslutning av programmet.
+        /// </summary>
         private static void EndProgram()
         {
             Console.Clear();

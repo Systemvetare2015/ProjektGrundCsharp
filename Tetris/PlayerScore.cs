@@ -14,7 +14,9 @@ namespace Tetris
             ReadFromFile();
 
         }
-
+        /// <summary>
+        /// Metoden skriver till filen scores.csv
+        /// </summary>
         private void SavetoFile()
         {
             // skriva till fil
@@ -27,7 +29,9 @@ namespace Tetris
             }
 
         }
-
+        /// <summary>
+        /// Metoden läser från filen
+        /// </summary>
         private void ReadFromFile()
         {
             if (!File.Exists(filename))
