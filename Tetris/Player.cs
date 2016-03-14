@@ -7,7 +7,7 @@ namespace Tetris
         public Player(string playername)
         {
             PlayerName = playername;
-                        TimePlayed =DateTime.Now;
+            TimePlayed =DateTime.Now;
         }
 
         public Player()

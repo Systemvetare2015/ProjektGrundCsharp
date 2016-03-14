@@ -2,6 +2,9 @@
 
 namespace Tetris.Game
 {
+    /// <summary>
+    /// block contains ppostion in tetris game and color of block
+    /// </summary>
     public  class Block
     {
         public Block(ConsoleColor color, int x, int y)

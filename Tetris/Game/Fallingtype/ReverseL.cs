@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Tetris.Game.Fallingtype
 {
+    /// <summary>
+    /// Type of falingblock
+    /// </summary>
     class ReverseL : FallingType
     {
         public ReverseL()

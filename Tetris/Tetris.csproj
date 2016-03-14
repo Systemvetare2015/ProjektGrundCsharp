@@ -53,11 +53,10 @@
     <Compile Include="Game\RefPos.cs" />
     <Compile Include="Game\TetrisGame.cs" />
     <Compile Include="MenuHelper.cs" />
-    <Compile Include="Snake\Player.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="PlayerScore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Score.cs" />
     <Compile Include="Snake\snake.cs" />
     <Compile Include="Snake\SnakeGame.cs" />
   </ItemGroup>

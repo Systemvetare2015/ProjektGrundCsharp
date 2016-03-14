@@ -19,6 +19,7 @@ namespace Tetris.Snake
         private Snake Snake { get; set; }
         private Random random = new Random();
         private bool GameOver = false;
+        private bool canmove = true;
         /// <summary>
         /// Init a new game
         /// </summary>
@@ -36,12 +37,13 @@ namespace Tetris.Snake
         {
             while (!TouchWall() && !GameOver)
             {
-                Snake.Move();
-                if (Snake.TouchSelf())
-                    break;
-                TouchFood();
-                Render();
+                    Snake.Move();
+                    if (Snake.TouchSelf())
+                        break;
+                    TouchFood();
+                    Render();
                 Thread.Sleep(200);
+                
             }
             Console.Clear();
             Console.Out.WriteLine("GameOver \nPress Esc to leave");
@@ -121,7 +123,9 @@ namespace Tetris.Snake
         /// </summary>
         public void Left()
         {
+
             Snake.Left();
+
         }
         /// <summary>
         /// Play game
