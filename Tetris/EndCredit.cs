@@ -17,7 +17,7 @@ namespace Tetris
             int[] l;
             Initialize(out width, out height, out y, out l);
             int ms;
-            ConsoleKeyInfo keyInfo;
+            
             do
             {
             while (!Console.KeyAvailable)
@@ -30,7 +30,13 @@ namespace Tetris
                 if (Console.KeyAvailable)
                     if (Console.ReadKey().Key == ConsoleKey.F5)
                         Initialize(out width, out height, out y, out l);
-            }
+                    Console.SetCursorPosition(width / 2 - 16, height / 2 - 2);
+                    Console.WriteLine(" Felix Svensson - Gamedesigner");
+                    Console.SetCursorPosition(width / 2 - 16, height / 2 - 1);
+                    Console.WriteLine(" Martin Olsson - Menymaker");
+                    Console.SetCursorPosition(width / 2 - 16, height / 2);
+                    Console.WriteLine(" Adam Strömberg - Textdesigner");
+                }
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
         }
 
@@ -51,29 +57,32 @@ namespace Tetris
                 }
                 else
                 {
-                    
+                    if (!(x > width / 2 - 16 && x < width / 2 + 14 && inBoxY(y[x] - 2 - (l[x] / 40 * 2), height) > height / 2 - 5 && inBoxY(y[x] - 2 - (l[x] / 40 * 2), height) < height / 2 + 1))
+                    {
+
                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.SetCursorPosition(x, inBoxY(y[x] - 2 - (l[x] / 40 * 2), height));
                         Console.Write(R);
                         Console.ForegroundColor = ConsoleColor.Green;
-                    
-                    
-                }
-               
-                    Console.SetCursorPosition(x, y[x]);
-                    Console.Write(R);
-                    y[x] = inBoxY(y[x] + 1, height);
+                    }
 
+
+
+                }
+
+                Console.SetCursorPosition(x, y[x]);
+                if (!(x > width/2 -16 && x < width / 2 + 14 && inBoxY(y[x] - 2 - (l[x] / 40 * 2), height)> height/2 - 5&& inBoxY(y[x] - 2 - (l[x] / 40 * 2), height) < height / 2+1))
+                {
+                    Console.Write(R);
                     Console.SetCursorPosition(x, inBoxY(y[x] - l[x], height));
                     Console.Write(' ');
                     Console.ForegroundColor = ConsoleColor.White;
+                }
+                y[x] = inBoxY(y[x] + 1, height);
 
-                Console.SetCursorPosition(width/2 - 10,height/2-2);
-                Console.WriteLine(" Felix Svensson - Gamedesigner");
-                Console.SetCursorPosition(width / 2 - 10, height / 2 - 1);
-                Console.WriteLine(" Martin Olsson - Menymaker");
-                Console.SetCursorPosition(width / 2 - 10, height / 2 );
-                Console.WriteLine(" Adam Strömberg - Textdesigner");
+                   
+
+               
                 
             }
         }
