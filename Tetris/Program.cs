@@ -139,7 +139,7 @@ namespace Tetris
                 {
                     if (!int.TryParse(Console.ReadLine(), out menyVal))
                     {
-                        Console.Out.WriteLine("Du skrev fel");
+                        Console.Out.WriteLine("Det är inget menyval, skriv med menysiffra");
                         
                     }
                 }
