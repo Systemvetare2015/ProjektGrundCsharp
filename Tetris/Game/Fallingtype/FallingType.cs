@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Tetris.Game.Fallingtype
 {
+    /// <summary>
+    /// Base class for all fallingtypes
+    /// </summary>
     public abstract class FallingType
     {
         protected FallingType()

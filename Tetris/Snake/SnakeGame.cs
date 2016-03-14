@@ -19,7 +19,9 @@ namespace Tetris.Snake
         private Snake Snake { get; set; }
         private Random random = new Random();
         private bool GameOver = false;
-
+        /// <summary>
+        /// Init a new game
+        /// </summary>
         public SnakeGame()
         {
             Console.CursorVisible = false;
@@ -27,7 +29,9 @@ namespace Tetris.Snake
             GetRandomFood();
             Render();
         }
-        
+        /// <summary>
+        /// start game
+        /// </summary>
         public void Run()
         {
             while (!TouchWall() && !GameOver)
@@ -42,15 +46,23 @@ namespace Tetris.Snake
             Console.Clear();
             Console.Out.WriteLine("GameOver \nPress Esc to leave");
         }
-
+        /// <summary>
+        /// stop game
+        /// </summary>
         public void Stop()
         {
             GameOver = true;
         }
+        /// <summary>
+        /// outputs food on game plan
+        /// </summary>
         private void GetRandomFood()
         {
             Meat = new RefPos(random.Next(1, gameSize - 2), random.Next(1, gameSize / 2));
         }
+        /// <summary>
+        /// render out all
+        /// </summary>
         private void Render()
         {
             
@@ -75,7 +87,9 @@ namespace Tetris.Snake
                 Console.Out.Write("O");
             }
         }
-
+        /// <summary>
+        /// Check if touches food
+        /// </summary>
         private void TouchFood()
         {
             if (!Snake.RefPoses.Any((pos => (pos.X == Meat.X && pos.Y == Meat.Y)))) return;
@@ -83,6 +97,10 @@ namespace Tetris.Snake
             GetRandomFood();
             Score = Score + 10;
         }
+        /// <summary>
+        /// checks if touch wall
+        /// </summary>
+        /// <returns>If touch wall</returns>
         private bool TouchWall()
         {
             if (Snake.RefPoses.Any((pos => pos.X == 0 || pos.X > (gameSize-2))))
@@ -91,14 +109,24 @@ namespace Tetris.Snake
                 return true;
             return false;
         }
+        /// <summary>
+        /// trun right
+        /// </summary>
         public void Right()
         {
             Snake.Right();
         }
+        /// <summary>
+        /// turn left
+        /// </summary>
         public void Left()
         {
             Snake.Left();
         }
+        /// <summary>
+        /// Play game
+        /// </summary>
+        /// <returns>returns score</returns>
         public static int Play()
         {
             Console.Clear();

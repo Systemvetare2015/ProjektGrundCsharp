@@ -9,6 +9,7 @@ namespace Tetris.Game
 {
     class TetrisGame
     {
+        //local varibles
         private int GametopPosistion { get; set; }
         private bool First { get; set; }
         public int Score { get; set; }
@@ -78,6 +79,9 @@ namespace Tetris.Game
             }
             return newBlock;
         }
+        /// <summary>
+        /// adds new current moving block
+        /// </summary>
         private void addTemps()
         {
             MovingBlock = NextMovingBlock.Dequeue();
@@ -90,6 +94,11 @@ namespace Tetris.Game
 
 
         }
+        /// <summary>
+        /// Render block
+        /// </summary>
+        /// <param name="output">What type of char that will outputted for each block</param>
+        /// <param name="blocks">List of bloxks that will be outputted</param>
         private void Render(char output, List<Block> blocks)
         {
             foreach (var block in blocks.Where(block => block.Y > 0))
@@ -100,11 +109,16 @@ namespace Tetris.Game
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
-
+        /// <summary>
+        /// Moves fallingblock to right
+        /// </summary>
         private void Right()
         {
             Move(1, 0, true);
         }
+        /// <summary>
+        /// Moves fallingblock to left
+        /// </summary>
         private void Left()
         {
 
@@ -112,7 +126,12 @@ namespace Tetris.Game
             Move(-1, 0, true);
         }
 
-
+        /// <summary>
+        /// Moves block to position
+        /// </summary>
+        /// <param name="x">move x from current x position</param>
+        /// <param name="y">move y from current y position</param>
+        /// <param name="direction">parameter if its turning right or left</param>
         private void Move(int x, int y, bool direction = false)
         {
             if (!_canMove) return;
@@ -152,7 +171,9 @@ namespace Tetris.Game
 
             ClearAndRender(curretPos, MovingBlock.ToPostitions());
         }
-
+        /// <summary>
+        /// ends the game and outputs score
+        /// </summary>
         private void GameOver()
         {
             _gameOver = true;
@@ -162,7 +183,9 @@ namespace Tetris.Game
             Console.ResetColor();
             UpdateScore();
         }
-
+        /// <summary>
+        /// Checks if some rows is full
+        /// </summary>
         private void CheckIfRowIsFull()
         {
 
@@ -201,7 +224,9 @@ namespace Tetris.Game
 
             ClearAndRender(toRemove, StillBlocks);
         }
-
+        /// <summary>
+        /// updates current score on screen
+        /// </summary>
         private void UpdateScore()
         {
             Console.SetCursorPosition(0, 1);
@@ -209,7 +234,9 @@ namespace Tetris.Game
 
         }
 
-
+        /// <summary>
+        /// Rotates block
+        /// </summary>
         private void Rotate()
         {
             var oldPos = MovingBlock.ToPostitions();
@@ -225,7 +252,9 @@ namespace Tetris.Game
             }
             ClearAndRender(oldPos, MovingBlock.ToPostitions());
         }
-
+        /// <summary>
+        /// Moves moving block to bottom
+        /// </summary>
         private void MoveDown()
         {
             if (!_canMove) return;
@@ -240,7 +269,9 @@ namespace Tetris.Game
 
             ClearAndRender(curentPos, StillBlocks);
         }
-
+        /// <summary>
+        /// Render the uppcomming movingblock on side
+        /// </summary>
         private void RenderNext()
         {
             var left = 27;
@@ -268,7 +299,12 @@ namespace Tetris.Game
 
             }
         }
-
+        /// <summary>
+        /// render new blocks and removes others
+        /// </summary>
+        /// <param name="blocksToRemove">list of blocks to remove</param>
+        /// <param name="blocksToRender">list of block to render</param>
+        /// <param name="canMoveAfter">can block move after operation</param>
         private void ClearAndRender(List<Block> blocksToRemove, List<Block> blocksToRender, bool canMoveAfter = true)
         {
             _canMove = false;
@@ -277,13 +313,19 @@ namespace Tetris.Game
             _canMove = canMoveAfter;
 
         }
-
+        /// <summary>
+        /// stops game
+        /// </summary>
         private void Stop()
         {
             _gameOver = true;
             music.Stop();
             Console.Clear();
         }
+        /// <summary>
+        /// runs game
+        /// moves block and updates score
+        /// </summary>
         private void Run()
         {
             var def = 500;
@@ -302,8 +344,11 @@ namespace Tetris.Game
             music.Stop();
 
         }
-        public delegate void RunBetweenRender();
 
+        /// <summary>
+        /// start a session of the game
+        /// </summary>
+        /// <returns>Score of the game</returns>
         public static int Play()
         {
             var tetrisGame = new TetrisGame();
