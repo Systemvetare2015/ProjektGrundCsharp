@@ -83,14 +83,15 @@ namespace Tetris
 
                 case 2:
                     Console.Clear();
-                    Console.WriteLine(" ============================");
-                    Console.WriteLine("         END CREDIT          ");
-                    Console.WriteLine(" ============================" + Environment.NewLine);
+                    EndCredit.Start();
+                    //Console.WriteLine(" ============================");
+                    //Console.WriteLine("         END CREDIT          ");
+                    //Console.WriteLine(" ============================" + Environment.NewLine);
 
-                    Console.WriteLine(" Felix Svensson - Gamedesigner" + Environment.NewLine);
-                    Console.WriteLine(" Martin Olsson - Menymaker" + Environment.NewLine);
-                    Console.WriteLine(" Adam Strömberg - Textdesigner");
-                    Console.ReadLine();
+                    //Console.WriteLine(" Felix Svensson - Gamedesigner" + Environment.NewLine);
+                    //Console.WriteLine(" Martin Olsson - Menymaker" + Environment.NewLine);
+                    //Console.WriteLine(" Adam Strömberg - Textdesigner");
+                    //Console.ReadLine();
                     
 
                     

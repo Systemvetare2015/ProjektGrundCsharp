@@ -40,15 +40,7 @@ namespace Tetris.Snake
             var last = RefPoses.Peek();
             return RefPoses.Where((pos => pos != last)).Any((pos => pos.X == last.X && pos.Y == last.Y));
         }
-        /// <summary>
-        /// Checks if touch on next for not moving inside
-        /// </summary>
-        /// <returns></returns>
-        public bool TouchSelfOnNext()
-        {
-            var last = RefPoses.Peek();
-            return RefPoses.Where((pos => pos != last)).Any((pos => pos.X == (last.X - _xDirection) && pos.Y == (last.Y)- _yDirection));
-        }
+    
         /// <summary>
         /// Moves to nxt position
         /// </summary>

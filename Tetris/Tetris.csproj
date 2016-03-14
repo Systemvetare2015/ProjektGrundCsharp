@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EndCredit.cs" />
     <Compile Include="Game\blocks.cs" />
     <Compile Include="Game\Fallingtype\Cube.cs" />
     <Compile Include="Game\Fallingtype\FallingType.cs" />
