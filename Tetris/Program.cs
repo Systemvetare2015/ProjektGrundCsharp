@@ -12,7 +12,7 @@ namespace Tetris
 
         static void Main(string[] args)
         {
-            EndCredit.Start();
+            
 
             MainMeny();
         }
