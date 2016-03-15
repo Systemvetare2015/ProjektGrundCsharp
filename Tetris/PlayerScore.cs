@@ -59,13 +59,20 @@ namespace Tetris
             }
 
         }
-
+        /// <summary>
+        /// Get all player in database
+        /// </summary>
+        /// <returns>List of players</returns>
         public Player[] GetAllPlayerScores()
         {
             return Scores;
         }
 
-
+        /// <summary>
+        /// Search for player in database
+        /// </summary>
+        /// <param name="search">Search string</param>
+        /// <returns>Matched players</returns>
         public Player[] SearchPlayers(string search)
         {
             var searchResult = new Player[0];
@@ -78,7 +85,10 @@ namespace Tetris
             }
             return searchResult;
         }
-
+        /// <summary>
+        /// adds player to top list if he can compete with score
+        /// </summary>
+        /// <param name="newPlayer"></param>
         public void AddPlayer(Player newPlayer)
         {
             Scores = ExpandArray(Scores, newPlayer);
@@ -86,7 +96,10 @@ namespace Tetris
             Scores = ShortnedArrayBy(Scores, Scores.Length - 5);
             SavetoFile();
         }
-
+        /// <summary>
+        /// sorts players
+        /// </summary>
+        /// <param name="scores">sorted playerscores</param>
         private void Sort(Player[] scores)
         {
             var unsorted = true;
@@ -109,7 +122,12 @@ namespace Tetris
                 endIndex--;
             }
         }
-
+        /// <summary>
+        /// swap method
+        /// </summary>
+        /// <param name="vektor"></param>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
         private void Swap(Player[] vektor, int a, int b)
         {
             var r = vektor[a];
@@ -133,6 +151,13 @@ namespace Tetris
             newVektor[newVektor.Length - 1] = newObject;
             return newVektor;
         }
+        /// <summary>
+        /// Remove last int objects from array
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="vektor">array to remove from</param>
+        /// <param name="removeAmountOfElements">amount of objects to remove</param>
+        /// <returns>new shortened array</returns>
         private T[] ShortnedArrayBy<T>(T[] vektor, int removeAmountOfElements)
         {
 
@@ -147,10 +172,20 @@ namespace Tetris
             }
             return newVektor;
         }
+        /// <summary>
+        /// Converts int to enum
+        /// </summary>
+        /// <param name="GameType"></param>
+        /// <returns>Enum type</returns>
         private Player.GameType ConvertToEnum(int GameType)
         {
             return GameType == 1 ? Player.GameType.Snake : Player.GameType.Tetris;
         }
+        /// <summary>
+        /// Converts enum to int for db
+        /// </summary>
+        /// <param name="GameType"></param>
+        /// <returns>Int</returns>
         private int ConvertToInt(Player.GameType GameType)
         {
             return GameType == Player.GameType.Snake ? 1 : 2;

@@ -4,6 +4,10 @@ namespace Tetris
 {
     public class EndCredit
     {
+        /// <summary>
+        /// MATRIX!!!!!!!
+        /// CAN´T EXPLAIN
+        /// </summary>
         public static void Start()
         {
             Console.ForegroundColor = ConsoleColor.DarkGreen;
@@ -17,10 +21,9 @@ namespace Tetris
             int[] l;
             Initialize(out width, out height, out y, out l);
             int ms;
-            
-            do
-            {
-            while (!Console.KeyAvailable)
+
+            var stop = DateTime.Now.AddSeconds(5);
+            while (DateTime.Now < stop)
             {
                 DateTime t1 = DateTime.Now;
                 MatrixStep(width, height, y, l);
@@ -37,7 +40,7 @@ namespace Tetris
                     Console.SetCursorPosition(width / 2 - 16, height / 2);
                     Console.WriteLine(" Adam Strömberg - Textdesigner");
                 }
-            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+            
         }
 
         static bool thistime = false;
@@ -57,7 +60,8 @@ namespace Tetris
                 }
                 else
                 {
-                    if (!(x > width / 2 - 16 && x < width / 2 + 14 && inBoxY(y[x] - 2 - (l[x] / 40 * 2), height) > height / 2 - 5 && inBoxY(y[x] - 2 - (l[x] / 40 * 2), height) < height / 2 + 1))
+                    if (!(x > width / 2 - 16 && x < width / 2 + 14 && inBoxY(y[x] - 2 - (l[x] / 40 * 2), height) > height / 2 - 5 && inBoxY(y[x] - 2 - (l[x] / 40 * 2), height) < height / 2 + 1
+                        ))
                     {
 
                         Console.ForegroundColor = ConsoleColor.DarkGreen;

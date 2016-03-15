@@ -5,12 +5,22 @@ namespace Tetris
 {
     public static class MenuHelper
     {
+        /// <summary>
+        /// simple wrapper for asking question
+        /// </summary>
+        /// <param name="question">Question</param>
+        /// <returns>Answer</returns>
         public static string Ask(string question)
         {
             Console.Out.WriteLine(question);
             return Console.ReadLine();
         }
-
+        /// <summary>
+        /// Shows a meny with arrow navigation
+        /// </summary>
+        /// <param name="message">Header message</param>
+        /// <param name="alternatives">List ov elternatives</param>
+        /// <returns>index position of answer</returns>
         public static int AskFromAlternative(string message, List<string> alternatives)
         {
             Console.CursorVisible = false;
@@ -78,7 +88,13 @@ namespace Tetris
             return returnIndex;
         }
 
-
+        /// <summary>
+        /// writes to som pos
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="ouput"></param>
+        /// <param name="color"></param>
         private static void WriteToPos(int x, int y, string ouput, ConsoleColor color = ConsoleColor.White)
         {
             Console.SetCursorPosition(x, y);
