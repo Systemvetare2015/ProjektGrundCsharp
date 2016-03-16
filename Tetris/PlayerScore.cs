@@ -162,7 +162,7 @@ namespace Tetris
         private T[] ShortnedArrayBy<T>(T[] vektor, int removeAmountOfElements)
         {
 
-            if (removeAmountOfElements < 0)
+            if (removeAmountOfElements <= 0)
             {
                 return vektor;
             }
