@@ -188,7 +188,7 @@ namespace Tetris
         {
 
             var svar = MenuHelper.AskFromAlternative("Väj vad du vill göra",
-                new List<string>() { "sök på namn", "Visa topp lista" });
+                new List<string>() { "sök på namn", "Visa topplista" });
 
             switch (svar)
             {
