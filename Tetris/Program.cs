@@ -122,6 +122,7 @@ namespace Tetris
         /// </summary>
         private static void MainMeny()
         {
+            //Instaniserar databasen för att ha samma conext genom hela applicationen.
             var playerDB = new PlayerScores();
 
             var running = true;
@@ -235,3 +236,7 @@ namespace Tetris
 }
 
 
+///PLayerdb gör att spara påäng hämta
+/// Vi behöver inte bry oss om hur den gör det men bara det gör det. 
+/// dvs från vår player db container kan man bara se vilka operationer som finns (Vilka funktioner som finns) Du behöver inte se vad som ligger under i comtainern
+/// All vår "Affräslogik" ligger i conatainern dvs att om man lägger till en 6 spelare som kommer den jämnföras med de nuvarande och kolla om den kan ha en utmanade poäng
