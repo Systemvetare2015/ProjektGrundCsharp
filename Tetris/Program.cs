@@ -86,20 +86,9 @@ namespace Tetris
                 case 2:
                     Console.Clear();
                     EndCredit.Start();
-                    //Console.WriteLine(" ============================");
-                    //Console.WriteLine("         END CREDIT          ");
-                    //Console.WriteLine(" ============================" + Environment.NewLine);
-
-                    //Console.WriteLine(" Felix Svensson - Gamedesigner" + Environment.NewLine);
-                    //Console.WriteLine(" Martin Olsson - Menymaker" + Environment.NewLine);
-                    //Console.WriteLine(" Adam Strömberg - Textdesigner");
-                    //Console.ReadLine();
-                    
-
-                    
-
 
                     break;
+               
                 default:
                     Console.Clear();
                     Console.WriteLine(" ===================================");
@@ -109,10 +98,6 @@ namespace Tetris
 
                     MenyVal1(playerDB);
                     break;
-
-
-
-
 
             }
         }

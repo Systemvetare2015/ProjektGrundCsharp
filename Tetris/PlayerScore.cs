@@ -91,7 +91,7 @@ namespace Tetris
         /// <param name="newPlayer"></param>
         public void AddPlayer(Player newPlayer)
         {
-            //sexig
+            //sexig 
             Scores = ExpandArray(Scores, newPlayer);
             Sort(Scores);
             Scores = ShortnedArrayBy(Scores, Scores.Length - 5);
