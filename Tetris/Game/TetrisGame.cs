@@ -179,7 +179,7 @@ namespace Tetris.Game
             _gameOver = true;
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.Out.WriteLine("GameOver");
+            Console.Out.WriteLine("GameOver, Tryck ESC för att återgå till meny");
             Console.ResetColor();
             UpdateScore();
         }
