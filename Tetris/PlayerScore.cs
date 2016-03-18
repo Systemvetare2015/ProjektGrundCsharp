@@ -91,6 +91,7 @@ namespace Tetris
         /// <param name="newPlayer"></param>
         public void AddPlayer(Player newPlayer)
         {
+            
             //sexig 
             Scores = ExpandArray(Scores, newPlayer);
             Sort(Scores);

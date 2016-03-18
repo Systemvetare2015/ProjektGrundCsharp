@@ -13,7 +13,6 @@ namespace Tetris
         static void Main(string[] args)
         {
             
-
             MainMeny();
         }
         /// <summary>
